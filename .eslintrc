@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "jest"],
+  "extends": [
+    "eslint-config-airbnb-base",
+    "eslint-config-airbnb",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "prettier"
+  ],
+  "parserOptions": { "ecmaVersion": 2023, "sourceType": "module" },
+  "rules": {
+    "no-console": 1,
+    "import/no-unresolved": 0,
+    "import/extensions": 0
+  },
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  }
+}
