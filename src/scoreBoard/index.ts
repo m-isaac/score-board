@@ -24,6 +24,13 @@ class ScoreBoard implements IScoreBoard {
     this.matches.set(matchId, scores);
     return this;
   };
+
+  finishMatch = (homeTeam: string, awayTeam: string) => {
+    const matchId: MatchId = `${homeTeam},${awayTeam}`;
+    this.verifyMatchExists(matchId);
+    this.matches.delete(matchId);
+    return this;
+  };
 }
 
 export default ScoreBoard;
