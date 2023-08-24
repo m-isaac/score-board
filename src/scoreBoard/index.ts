@@ -1,4 +1,4 @@
-import { IScoreBoard } from './types';
+import { IScoreBoard, MatchSummary } from './types';
 
 type Scores = [number, number];
 type MatchId = `${string},${string}`;
@@ -30,6 +30,19 @@ class ScoreBoard implements IScoreBoard {
     this.verifyMatchExists(matchId);
     this.matches.delete(matchId);
     return this;
+  };
+
+  getSummary = () => {
+    const additionReducer = (acc: number, cur: number) => acc + cur;
+    const sortedMatches = Array.from(this.matches.entries())
+      .sort(
+        ([_matchA, scoresA], [_matchB, scoresB]) => scoresB.reduce(additionReducer) - scoresA.reduce(additionReducer) || -1,
+      );
+    return sortedMatches.map(([matchId, scores]) => {
+      const [homeTeam, awayTeam] = matchId.split(',');
+      const [homeTeamScore, awayTeamScore] = scores;
+      return `${homeTeam} ${homeTeamScore} - ${awayTeam} ${awayTeamScore}` as MatchSummary;
+    });
   };
 }
 

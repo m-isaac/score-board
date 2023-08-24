@@ -1,4 +1,5 @@
-class ScoreBoard {}
+import ScoreBoard from ".";
+
 
 describe('testing ScoreBoard functionality', () => {
   const homeTeam = 'team home';
